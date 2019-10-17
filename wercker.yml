@@ -1,0 +1,23 @@
+box: rocker/tidyverse
+
+build:
+  steps:
+    - script:
+        name: Install and update packages
+        code: |
+          Rscript -e "install.packages(c('rvest', 'jsonlite', 'httr'))"
+          Rscript -e "update.packages(ask = FALSE)"
+    - script:
+        name: Check for allowed files
+        code: |
+          Rscript -e "source('https://raw.githubusercontent.com/sta523-fa19/hw5/master/hw5_whitelist.R')"
+    - script:
+        name: Check make runs
+        code: |
+          make
+          Rscript -e "stopifnot(file.exists('hw5.html'))"
+    - script:
+        name: Check make clean_html runs
+        code: |
+          make clean_html
+          Rscript -e "source('https://raw.githubusercontent.com/sta523-fa19/hw5/master/hw5_whitelist.R')"
