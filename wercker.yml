@@ -5,7 +5,7 @@ build:
     - script:
         name: Install and update packages
         code: |
-          Rscript -e "install.packages(c('rvest', 'jsonlite', 'httr'))"
+          Rscript -e "install.packages(c('rvest', 'jsonlite', 'httr', 'ggmap', 'maps', 'mapdata', 'alphahull'))"
           Rscript -e "update.packages(ask = FALSE)"
     - script:
         name: Check for allowed files
